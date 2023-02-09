@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fenster
+  namespace: om-fenster
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fenster
+  template:
+    metadata:
+      labels:
+        app: fenster
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - topologyKey: kubernetes.io/hostname
+              labelSelector:
+                matchLabels:
+                  app: fenster
+      restartPolicy: Always
+      containers:
+        - name: fenster
+          image: docker.io/oscam/fenster:v0.1
+          imagePullPolicy: Always
+          resources:
+            limits:
+#              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 2547
+          env:
+            - name: DEBUG
+              value: 'True'
+            - name: ALLOWED_HOSTS
+              value: 0.0.0.0
+            - name: PORT
+              value: '2547'
+
