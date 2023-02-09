@@ -1,2 +1,2 @@
 # argocd-basics
-Deploying on a Kubernetes with ArgoCD
+Deploying on Kubernetes with Tekton pipelines and ArgoCD
