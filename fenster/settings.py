@@ -32,7 +32,7 @@ DEBUG = debug
 
 hosts = os.getenv('ALLOWED_HOSTS', '0.0.0.0')
 
-ALLOWED_HOSTS = [hosts]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
